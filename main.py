@@ -19,9 +19,11 @@ request = requests.get(url)
 content = request.json()
 # Access the article titles and description
 body = ""
-for index, article in enumerate(content["articles"]):
+for index, article in enumerate(content["articles"][:20]):
     if article["title"] is not None:
-        body = body + (f"Article {index}\nTitle: "
+        body = body + (f"Subject: Today's News\n"         
+                       f"Article"
+                       f" {index}\nTitle: "
                        f"{article["title"]}\nDescription: "
                        f"{article['description']}\nURL: "
                        f"{article['url']}")+2*"\n"
