@@ -23,7 +23,7 @@ for index, article in enumerate(content["articles"][:20]):
     if article["title"] is not None:
         body = body + (f"Subject: Today's News\n"         
                        f"Article"
-                       f" {index}\nTitle: "
+                       f" {index+1}\nTitle: "
                        f"{article["title"]}\nDescription: "
                        f"{article['description']}\nURL: "
                        f"{article['url']}")+2*"\n"
@@ -34,3 +34,21 @@ print(body)
 send_email(body)
 
 
+# 1) Find an image on a web site
+# 2) right click on it and choose Open Image in a new tab. Copy the link into the
+# following variable
+# 3) url = "https://www.connachtrugby.ie/storage/images/Galway%20Bay%20FM.svg"
+# 4) import requests
+# 5) response = requests.get(url)
+# 6) response.content would return the bytes which form part of this image. We
+# need these bytes to be saved into an image.jpg file in write binary mode on
+# our own filesystem
+# 7) with open('image.jpg', 'wb') as file:
+#     file.write(response.content)
+# 8) image.jpg should appear on filesystem
+
+
+url = "https://www.connachtrugby.ie/storage/images/Galway%20Bay%20FM.svg"
+response = requests.get(url)
+with open('image.jpg', 'wb') as file:
+    file.write(response.content)
